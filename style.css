@@ -1,0 +1,135 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('fonts/HelveticaNeue-Light-08.ttf') format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('fonts/HelveticaNeue-01.ttf') format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('fonts/HelveticaNeue-Medium-11.ttf') format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('fonts/HelveticaNeue-Bold-02.ttf') format("truetype");
+    font-weight: 700;
+}
+
+body{
+    background: #F7F7F7;
+    font-family: "HelveticaNeue";
+}
+
+.page-indicator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 66px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.line{
+    border: 2px solid #000000;
+    width: calc(100% - 40px);
+    margin: 15px auto 27px auto;
+    
+}
+
+
+.form-container{
+    margin-top: 91px;
+}
+
+.form{
+    padding: 96px 174px;
+    width: 1226px;
+    margin: auto;
+    background-color: #FFFFFF;
+    border-radius: 18px;
+    display: none;
+}
+
+.form.active{
+    display: block;
+}
+
+
+.field{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 52px;
+}
+
+input{
+    height: 60px;
+    padding: 19px 16px;
+    outline: 2px solid #8AC0E2;
+    border-radius: 8px;
+    border: none;
+}
+
+input:focus{
+    outline: 2px solid #6499FF;
+    background-color: rgba(43, 75, 242, 0.06);
+}
+
+.input-container{
+    display: flex;
+    gap: 100px;
+}
+
+label{
+    line-height: 21px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+select{
+    height: 60px;
+    padding: 19px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #EBEBEB;
+}
+
+
+
+button{
+    margin: 20px;
+    padding: 8px 20px;
+    width: 100px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: linear-gradient( 45deg, #419fe1, cyan);
+    color: whitesmoke;
+    float: left;
+    font-weight: 700;
+    position: relative;
+    top: 50%;
+    left: 10%;
+}
+button:nth-of-type(1){
+    display: none;
+}
+
+
+.error-text{
+    border: 1px solid red;
+}

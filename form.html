@@ -4,37 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCfy</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
 
     <section class="form-container">
+        <div class="page-indicator">
+            <div>
+                <p>თანამშრომლების ინფო</p>
+                <div class="line"></div>
+            </div>
+            <div>
+                <p>ლეპტოპების მახასიათებლები</p>
+                <div class="line"></div>
+            </div>
+        </div>
         <form action="">
-            <label for="">სახელი</label>
-            <input type="text" placeholder="სახელი" id="name" onkeyup="saveValue(this)">
-            <label for="">გვარი</label>
-            <input type="text" placeholder="გვარი" id="surname" onkeyup="saveValue(this)">
-            <select name="team" id="team">
-                <option value="დეველოპერი">დეველოპერი</option>
-                <option value="HR">HR</option>
-                <option value="გაყიდვები">გაყიდვები</option>
-                <option value="დიზაინი">დიზაინი</option>
-                <option value="მარკეტინგი">მარკეტინგი</option>
-            </select>
-            <select name="position" id="position">
-                <option value="დეველოპერი">დეველოპერი</option>
-                <option value="HR">HR</option>
-                <option value="გაყიდვები">გაყიდვები</option>
-                <option value="დიზაინი">დიზაინი</option>
-                <option value="მარკეტინგი">მარკეტინგი</option>
-            </select>
-            <label for="">მეილი</label>
-            <input type="email" placeholder="email" id="email" onkeyup="saveValue(this)">
-            <label for="">ტელეფონის ნომერი</label>
-            <input type="number" placeholder="ტელეფონის ნომერი" id="phone" onkeyup="saveValue(this)">
+            <div class="form active">
+                <div class="input-container">
+                    <div class="field">
+                        <label for="">სახელი</label>
+                        <input type="text" placeholder="სახელი" id="name" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label for="">გვარი</label>
+                        <input type="text" placeholder="გვარი" id="surname" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <select name="team" id="team" onchange="saveValue(this)">
+                        <option value="" disabled selected>თიმი</option>
+                        <option value="დეველოპერი">დეველოპერი</option>
+                        <option value="HR">HR</option>
+                        <option value="გაყიდვები">გაყიდვები</option>
+                        <option value="დიზაინი">დიზაინი</option>
+                        <option value="მარკეტინგი">მარკეტინგი</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <select name="position" id="position" onchange="saveValue(this)">
+                        <option value="" disabled selected>პოზიცია</option>
+                        <option value="დეველოპერი">დეველოპერი</option>
+                        <option value="HR">HR</option>
+                        <option value="გაყიდვები">გაყიდვები</option>
+                        <option value="დიზაინი">დიზაინი</option>
+                        <option value="მარკეტინგი">მარკეტინგი</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="">მეილი</label>
+                    <input type="email" placeholder="email" id="email" onkeyup="saveValue(this)">
+                    <span></span>
+                </div>
+                <div class="field">
+                    <label for="">ტელეფონის ნომერი</label>
+                    <input type="number" placeholder="ტელეფონის ნომერი" id="phone" onkeyup="saveValue(this)">
+                    <span></span>
+                </div>
+            </div>
+            <div class="form">
+                <div class="field">
+                    <label for="">Username</label>
+                    <input type="text" placeholder="email">
+                    <span></span>
+                </div>
+                <div class="field">
+                    <label for="">Phone Number</label>
+                    <input type="text" placeholder="phone">
+                    <span></span>
+                </div>
+            </div>
+            <button>Previous</button>
+            <button>Next</button>
+
         </form>
     </section>
-
     <script src="main.js"></script>
 </body>
 </html>
