@@ -11,9 +11,9 @@
     <section class="form-container">
         <form action="">
             <label for="">სახელი</label>
-            <input type="text" placeholder="სახელი" id="name">
+            <input type="text" placeholder="სახელი" id="name" onkeyup="saveValue(this)">
             <label for="">გვარი</label>
-            <input type="text" placeholder="გვარი" id="surname">
+            <input type="text" placeholder="გვარი" id="surname" onkeyup="saveValue(this)">
             <select name="team" id="team">
                 <option value="დეველოპერი">დეველოპერი</option>
                 <option value="HR">HR</option>
@@ -29,13 +29,9 @@
                 <option value="მარკეტინგი">მარკეტინგი</option>
             </select>
             <label for="">მეილი</label>
-            <input type="email" placeholder="email" id="email">
+            <input type="email" placeholder="email" id="email" onkeyup="saveValue(this)">
             <label for="">ტელეფონის ნომერი</label>
-            <input type="number" placeholder="ტელეფონის ნომერი" id="phone">
-            <label for="">Username</label>
-            <input type="text" placeholder="email">
-            <label for="">Phone Number</label>
-            <input type="text" placeholder="phone">
+            <input type="number" placeholder="ტელეფონის ნომერი" id="phone" onkeyup="saveValue(this)">
         </form>
     </section>
 
