@@ -54,12 +54,16 @@ body{
     margin-top: 91px;
 }
 
-.form{
+
+form{
     padding: 96px 174px;
     width: 1226px;
     margin: auto;
     background-color: #FFFFFF;
     border-radius: 18px;
+}
+
+.form{
     display: none;
 }
 
