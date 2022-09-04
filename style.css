@@ -94,7 +94,12 @@ input:focus{
 
 .input-container{
     display: flex;
-    gap: 100px;
+    gap: 80px;
+}
+
+.second-input-container{
+    display: flex;
+    gap: 50px;
 }
 
 label{
@@ -111,6 +116,37 @@ select{
     background-color: #EBEBEB;
 }
 
+.image-field {
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 18px;
+    border: 2px dashed #4386A9;
+    background: #F6F6F6;
+    padding: 107px 0px;
+}
+
+.image-field p{
+    width: 195px;
+    text-align: center;
+}
+
+.image-field input {
+    outline: none;
+    width: 100%;
+}
+
+.radios{
+    display: flex;
+}
+
+.radios div{
+    display: flex;
+    align-items: center;
+}
+
+.radios input{
+    outline: none;
+}
 
 
 button{

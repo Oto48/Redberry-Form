@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -20,16 +21,16 @@
                 <div class="line"></div>
             </div>
         </div>
-        <form action="">
+        <form action="" id="form">
             <div class="form active">
                 <div class="input-container">
                     <div class="field">
-                        <label for="">სახელი</label>
+                        <label>სახელი</label>
                         <input type="text" placeholder="სახელი" id="name" onkeyup="saveValue(this)">
                         <span></span>
                     </div>
                     <div class="field">
-                        <label for="">გვარი</label>
+                        <label>გვარი</label>
                         <input type="text" placeholder="გვარი" id="surname" onkeyup="saveValue(this)">
                         <span></span>
                     </div>
@@ -45,26 +46,68 @@
                     </select>
                 </div>
                 <div class="field">
-                    <label for="">მეილი</label>
+                    <label>მეილი</label>
                     <input type="email" placeholder="email" id="email" onkeyup="saveValue(this)">
                     <span></span>
                 </div>
                 <div class="field">
-                    <label for="">ტელეფონის ნომერი</label>
+                    <label>ტელეფონის ნომერი</label>
                     <input type="text" placeholder="ტელეფონის ნომერი" id="phone" onkeyup="saveValue(this)">
                     <span></span>
                 </div>
             </div>
             <div class="form">
-                <div class="field">
-                    <label for="">Username</label>
-                    <input type="text" placeholder="email">
-                    <span></span>
+                <div class="image-field">
+                    <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
+                    <input type="file" id="image" name="image">
                 </div>
-                <div class="field">
-                    <label for="">Phone Number</label>
-                    <input type="text" placeholder="phone">
-                    <span></span>
+                <div class="input-container">
+                    <div class="field">
+                        <label>ლეპტოპის სახელი</label>
+                        <input type="text" placeholder="HP" id="laptop_name" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label style="visibility: hidden;">ბრენდი</label>
+                        <select id="laptop_brand" onchange="saveValue(this)">
+                            <option value="" disabled selected>ლეპტოპის ბრენდი</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="second-input-container">
+                    <div class="field">
+                        <label style="visibility: hidden;">CPU</label>
+                        <select id="laptop_cpu" onchange="saveValue(this)">
+                            <option value="" disabled selected>CPU</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>CPU-ს ბირთვი</label>
+                        <input type="text" placeholder="გვარი" id="laptop_cpu_cores" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label>CPU-ს ნაკადი</label>
+                        <input type="text" placeholder="გვარი" id="laptop_cpu_threads" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="field">
+                        <label>ლეპტოპის RAM (GB)</label>
+                        <input type="text" placeholder="HP" id="laptop_name" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                    <div class="radios">
+                        <div>
+                            <input type="radio" id="ssd" name="hard_drive_type" value="SSD">
+                            <label for="SSD">SSD</abel>
+                        </div>
+                        <div>
+                            <input type="radio" id="hdd" name="hard_drive_type" value="HDD">
+                            <label for="HDD">HDD</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button>Previous</button>
