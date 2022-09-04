@@ -17,8 +17,40 @@ let phone = document.getElementById("phone");
 phone.value = getSavedValue("phone");
 
 
-
 let image = document.getElementById("image");
+
+
+// add team options
+fetch('https://pcfy.redberryinternship.ge/api/teams')
+  .then((response) => response.json())
+  .then((response) => {
+    response.data.forEach(item => {
+        let opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerHTML = item.name;
+        team.appendChild(opt);
+    });
+    team.value = getSavedValue("team");
+  })
+  .catch((error) => console.log(error));
+
+// add position
+fetch('https://pcfy.redberryinternship.ge/api/positions')
+  .then((response) => response.json())
+  .then((response) => {
+    let storageItem = JSON.parse(getSavedValue("position"))
+    response.data.forEach(item => {
+        console.log(item)
+        let opt = document.createElement('option');
+        opt.value = item.team_id;
+        opt.innerHTML = item.name;
+        if(storageItem.text == opt.innerHTML){
+            opt.setAttribute('selected', true);
+        }
+        position.appendChild(opt);
+    });
+  })
+  .catch((error) => console.log(error));
 
 
 
@@ -37,6 +69,14 @@ function saveValue(e){
     const id = e.id;  // get the sender's id to save it . 
     const val = e.value; // get the value. 
     localStorage.setItem(id, val);
+    console.log(localStorage.getItem(id));
+}
+
+function savePositionValue(e){
+    const id = e.id;  // get the sender's text to save it . 
+    const val = e.value; // get the value. 
+    const text = e.options[e.selectedIndex].text;
+    localStorage.setItem(id, JSON.stringify({value: val, text: text}));
     console.log(localStorage.getItem(id));
 }
 
@@ -80,8 +120,10 @@ function validate(){
     if(curPage === 0) {
         let reg = /^[a-zA-Z ]+$/;
         let emailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        
         let resultName = reg.test(name.value);
         let resultEmail = emailReg.test(email.value);
+
         if (resultName && resultEmail){
             curPage++;
             button[0].style.display = "block";
