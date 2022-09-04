@@ -4,20 +4,19 @@ button = document.getElementsByTagName('button');
 curPage = 0;
 
 let name = document.getElementById("name");
-name.value = getSavedValue("name");
 let surname = document.getElementById("surname");
-surname.value = getSavedValue("surname");
 let team = document.getElementById("team");
-team.value = getSavedValue("team");
 let position = document.getElementById("position");
-position.value = getSavedValue("position");
 let email = document.getElementById("email");
-email.value = getSavedValue("email");
 let phone = document.getElementById("phone");
-phone.value = getSavedValue("phone");
-
-
 let image = document.getElementById("image");
+
+name.value = getSavedValue("name");
+surname.value = getSavedValue("surname");
+team.value = getSavedValue("team");
+position.value = getSavedValue("position");
+email.value = getSavedValue("email");
+phone.value = getSavedValue("phone");
 
 
 // add team options
@@ -40,7 +39,6 @@ fetch('https://pcfy.redberryinternship.ge/api/positions')
   .then((response) => {
     let storageItem = JSON.parse(getSavedValue("position"))
     response.data.forEach(item => {
-        console.log(item)
         let opt = document.createElement('option');
         opt.value = item.team_id;
         opt.innerHTML = item.name;
@@ -118,13 +116,16 @@ function displayPage(page){
 function validate(){
 
     if(curPage === 0) {
-        let reg = /^[a-zA-Z ]+$/;
-        let emailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        let regex = /^([აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]+){2,}$/;
+        let emailRegex = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(redberry)\.ge$/;
+        let phoneRegex = /^(\+?995)?(79\d{7}|5\d{8})$/;
         
-        let resultName = reg.test(name.value);
-        let resultEmail = emailReg.test(email.value);
+        let resultName = regex.test(name.value);
+        let resultSurname = regex.test(surname.value);
+        let resultEmail = emailRegex.test(email.value);
+        let resultPhone = phoneRegex.test(phone.value);
 
-        if (resultName && resultEmail){
+        if (resultName && resultSurname && resultEmail && resultPhone){
             curPage++;
             button[0].style.display = "block";
             if (curPage>div.length-2) {button[1].textContent = 'Sign Up';}
@@ -134,7 +135,9 @@ function validate(){
             displayPage(curPage);
         }
         checkValue(name, resultName);
+        checkValue(surname, resultSurname);
         checkValue(email, resultEmail);
+        checkValue(phone, resultPhone);
     }
 
     if(curPage === 1) {
@@ -149,7 +152,7 @@ function validate(){
 
 
 function checkValue(input, regex){
-    !regex ? input.classList.add("error-text") : name.classList.remove("error-text");
+    !regex ? input.classList.add("error-text") : input.classList.remove("error-text");
 }
 
 
