@@ -100,13 +100,25 @@
                     </div>
                     <div class="radios">
                         <div>
-                            <input type="radio" id="ssd" name="hard_drive_type" value="SSD">
+                            <input type="radio" id="ssd" name="hard_drive_type" value="SSD" onchange="saveRadioValue(this)">
                             <label for="SSD">SSD</abel>
                         </div>
                         <div>
-                            <input type="radio" id="hdd" name="hard_drive_type" value="HDD">
+                            <input type="radio" id="hdd" name="hard_drive_type" value="HDD" onchange="saveRadioValue(this)">
                             <label for="HDD">HDD</label>
                         </div>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="field">
+                        <label>შეძენის რიცხვი (არჩევითი)</label>
+                        <input type="date" id="purchase_date" onkeyup="saveValue(this)">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label>ლეპტოპის ფასი</label>
+                        <input type="text" placeholder="0000" id="laptop_price" onkeyup="saveValue(this)">
+                        <span></span>
                     </div>
                 </div>
             </div>

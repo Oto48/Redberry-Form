@@ -18,8 +18,9 @@ let laptop_cpu_threads = document.getElementById("laptop_cpu_threads");
 
 let sdd = document.getElementById("ssd");
 let hdd = document.getElementById("hdd");
+let purchase_date = document.getElementById("purchase_date");
+let laptop_price = document.getElementById("laptop_price");
 
-console.log(hdd.value)
 
 name.value = getSavedValue("name");
 surname.value = getSavedValue("surname");
@@ -33,7 +34,12 @@ laptop_cpu.value = getSavedValue("laptop_cpu");
 laptop_cpu_cores.value = getSavedValue("laptop_cpu_cores");
 laptop_cpu_threads.value = getSavedValue("laptop_cpu_threads");
 
-
+if (ssd.value == localStorage.getItem("hard_drive_type")) {
+    ssd.checked = true;
+}
+if (hdd.value == localStorage.getItem("hard_drive_type")) {
+    hdd.checked = true;
+}
 
 // let a = JSON.stringify(getSavedValue("image"))
 // let e = JSON.parse(a);
@@ -154,6 +160,12 @@ function savePositionValue(e){
     const text = e.options[e.selectedIndex].text;
     localStorage.setItem(id, JSON.stringify({value: val, text: text}));
     console.log(localStorage.getItem(id));
+}
+
+function saveRadioValue(e){
+    const val = e.value; // get the value. 
+    localStorage.setItem("hard_drive_type", val);
+    console.log(localStorage.getItem("hard_drive_type"));
 }
 
 function getSavedValue(v){
