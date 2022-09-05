@@ -1,0 +1,54 @@
+@import "fonts.css";
+
+body {
+    font-family: 'HelveticaNeue';
+}
+
+.list {
+    padding: 0 371px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 55px;
+    row-gap: 52px;
+}
+
+.laptop {
+    height: 205px;
+    background: #EAFAFF;
+    border-radius: 20px;
+    padding: 14px 14px;
+    display: flex;
+    gap: 28px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.laptop .text {
+    gap: 18px;
+}
+
+.text p:first-child {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.text p:last-child {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+a {
+    font: 400;
+    font-size: 16px;
+    color: #4386A9;
+}
+
+img {
+    width: 266px;
+    height: 178px;
+    border-radius: 10px;
+}
