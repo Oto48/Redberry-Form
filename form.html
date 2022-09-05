@@ -26,13 +26,13 @@
                 <div class="input-container">
                     <div class="field">
                         <label>სახელი</label>
-                        <input type="text" placeholder="სახელი" id="name" onkeyup="saveValue(this)">
-                        <span></span>
+                        <input type="text" placeholder="გრიშა" id="name" onkeyup="saveValue(this)">
+                        <span>მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
                     </div>
                     <div class="field">
                         <label>გვარი</label>
-                        <input type="text" placeholder="გვარი" id="surname" onkeyup="saveValue(this)">
-                        <span></span>
+                        <input type="text" placeholder="ბაგრატიონი" id="surname" onkeyup="saveValue(this)">
+                        <span>მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
                     </div>
                 </div>
                 <div class="field">
@@ -47,19 +47,30 @@
                 </div>
                 <div class="field">
                     <label>მეილი</label>
-                    <input type="email" placeholder="email" id="email" onkeyup="saveValue(this)">
-                    <span></span>
+                    <input type="email" placeholder="grisha@redberry.ge" id="email" onkeyup="saveValue(this)">
+                    <span>უნდა მთავრდებოდეს @redberry.ge-ით</span>
                 </div>
                 <div class="field">
                     <label>ტელეფონის ნომერი</label>
-                    <input type="text" placeholder="ტელეფონის ნომერი" id="phone" onkeyup="saveValue(this)">
-                    <span></span>
+                    <input type="text" placeholder="+995 598 00 07 01" id="phone" onkeyup="saveValue(this)">
+                    <span>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</span>
                 </div>
             </div>
             <div class="form">
                 <div class="image-field">
+                    <img src="images/Vector.svg" alt="">
                     <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
-                    <input type="file" id="image" name="image">
+                    <input class="custom-file-input" type="file" id="image" name="image" accept="image/png, image/jpg, image/jpeg" onchange="addImage(this)">
+                </div>
+                <div class="bottom-image-input">
+                    <div class="bottom-image-text">
+                        <img src="images/check.svg" alt="">
+                        <div>
+                            <p id="image-name"></p>
+                            <p id="image-size"></p>
+                        </div>
+                    </div>
+                    <input class="custom-file-input" type="file" id="image" name="image" accept="image/png, image/jpg, image/jpeg" onchange="addImage(this)">
                 </div>
                 <div class="input-container">
                     <div class="field">
@@ -99,17 +110,20 @@
                         <span></span>
                     </div>
                     <div class="radios">
+                        <label>მეხსიერების ტიპი</label>
                         <div>
-                            <input type="radio" id="ssd" name="hard_drive_type" value="SSD" onchange="saveRadioValue(this)">
-                            <label for="SSD">SSD</abel>
-                        </div>
-                        <div>
-                            <input type="radio" id="hdd" name="hard_drive_type" value="HDD" onchange="saveRadioValue(this)">
-                            <label for="HDD">HDD</label>
+                            <div>
+                                <input type="radio" id="ssd" name="hard_drive_type" value="SSD" onchange="saveRadioValue(this)">
+                                <label for="SSD">SSD</abel>
+                            </div>
+                            <div class="radio-container">
+                                <input type="radio" id="hdd" name="hard_drive_type" value="HDD" onchange="saveRadioValue(this)">
+                                <label for="HDD">HDD</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="input-container" id="image-container">
+                <div class="input-container">
                     <div class="field">
                         <label>შეძენის რიცხვი (არჩევითი)</label>
                         <input type="date" id="purchase_date" onchange="saveValue(this)">
@@ -123,19 +137,24 @@
                 </div>
                 <div class="input-container">
                     <div class="radios">
+                        <label>ლეპტოპის მდგომარეობა</label>
                         <div>
-                            <input type="radio" id="new" name="laptop_state" value="new" onchange="saveRadioValue(this)">
-                            <label for="new">ახალი</abel>
-                        </div>
-                        <div>
-                            <input type="radio" id="used" name="laptop_state" value="used" onchange="saveRadioValue(this)">
-                            <label for="used">მეორადი</label>
+                            <div>
+                                <input type="radio" id="new" name="laptop_state" value="new" onchange="saveRadioValue(this)">
+                                <label for="new">ახალი</abel>
+                            </div>
+                            <div class="radio-container">
+                                <input type="radio" id="used" name="laptop_state" value="used" onchange="saveRadioValue(this)">
+                                <label for="used">მეორადი</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button>Previous</button>
-            <button>Next</button>
+            <div class="buttons">
+                <button>უკან</button>
+                <button>შემდეგი</button>
+            </div>
         </form>
     </section>
     <script src="main.js"></script>

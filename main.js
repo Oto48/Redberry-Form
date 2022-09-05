@@ -1,7 +1,7 @@
 form = document.querySelector('form');
 div = document.getElementsByClassName('form')
 button = document.getElementsByTagName('button');
-curPage = 1;
+curPage = 0;
 
 let name = document.getElementById("name");
 let surname = document.getElementById("surname");
@@ -120,9 +120,9 @@ fetch('https://pcfy.redberryinternship.ge/api/cpus')
 
 const formData = new FormData();
 
-image.addEventListener("change", e => {
-    localStorage.setItem("image", image.files[0]);
-    formData.append('laptop_image', image.files[0])
+function addImage(e) {
+    localStorage.setItem("image", e.files[0]);
+    formData.append('laptop_image', e.files[0])
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const uploaded_image = reader.result;
@@ -132,10 +132,13 @@ image.addEventListener("change", e => {
       imageField.style.backgroundPosition = `center`;
       imageField.style.backgroundRepeat = `no-repeat`;
       imageField.style.border = 'none';
-      imageField.classList.add("hidden-tags");
+      imageField.textContent = '';
     });
-    reader.readAsDataURL(image.files[0]);
-})
+    reader.readAsDataURL(e.files[0]);
+    document.querySelector(".bottom-image-input").style.display = "flex";
+    document.getElementById('image-name').innerHTML = e.files[0].name;
+    document.getElementById('image-size').innerHTML = e.files[0].size;
+}
 
 function saveValue(e){
     const id = e.id;  // get the sender's id to save it . 
@@ -178,9 +181,9 @@ button[0].onclick = ()=>{
         curPage--;
     }
     if (curPage < 1) {
-        button[0].style.display = 'none';
+        button[0].style.visibility = 'hidden';
     }
-    if (curPage<div.length-1) {button[1].textContent = 'Next';}
+    if (curPage<div.length-1) {button[1].textContent = 'შემდეგი';}
     displayPage(curPage);
 }
 
@@ -207,8 +210,8 @@ function validate(){
 
         if (resultName && resultSurname && resultEmail && resultPhone){
             curPage++;
-            button[0].style.display = "block";
-            if (curPage>div.length-2) {button[1].textContent = 'Sign Up';}
+            button[0].style.visibility = "visible";
+            if (curPage>div.length-2) {button[1].textContent = 'დამახსოვრება';}
             if (curPage >= div.length) {
                 form.onsubmit = ()=>{return true;}
             }
@@ -216,6 +219,8 @@ function validate(){
         }
         checkValue(name, resultName);
         checkValue(surname, resultSurname);
+        checkValue(team, team.value);
+        checkValue(position, position.value);
         checkValue(email, resultEmail);
         checkValue(phone, resultPhone);
     }
@@ -225,8 +230,8 @@ function validate(){
 }
 
 if(curPage === 1) {
-    button[0].style.display = "block";
-    button[1].textContent = 'Sign Up';
+    button[0].style.visibility = "visible";
+    button[1].textContent = 'დამახსოვრება';
     button[1].addEventListener("click", function(){
         formData.append('name', "გელა")
         formData.append('surname', "გელაშვილი")
@@ -261,8 +266,8 @@ if(curPage === 1) {
 }
 
 
-function checkValue(input, regex){
-    !regex ? input.classList.add("error-text") : input.classList.remove("error-text");
+function checkValue(input, validation){
+    !validation ? input.classList.add("error-text") : input.classList.remove("error-text");
 }
 
 

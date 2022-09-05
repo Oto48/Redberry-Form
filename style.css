@@ -79,7 +79,14 @@ form{
     margin-bottom: 52px;
 }
 
-input{
+.field span {
+    font-size: 14px;
+    font-weight: 300;
+    color: #2E2E2E;
+    margin-top: 10px;
+}
+
+input:not([type=file]){
     height: 60px;
     padding: 19px 16px;
     outline: 2px solid #8AC0E2;
@@ -87,7 +94,7 @@ input{
     border: none;
 }
 
-input:focus{
+input:focus:not([type=file]):not([type=radio]){
     outline: 2px solid #6499FF;
     background-color: rgba(43, 75, 242, 0.06);
 }
@@ -106,6 +113,7 @@ label{
     line-height: 21px;
     font-weight: 500;
     font-size: 18px;
+    margin-bottom: 15px;
 }
 
 select{
@@ -122,25 +130,96 @@ select{
     border-radius: 18px;
     border: 2px dashed #4386A9;
     background: #F6F6F6;
-    padding: 107px 0px;
+    padding: 54px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 423px;
 }
 
 .image-field p{
     width: 195px;
     text-align: center;
+    margin-top: 19px;
+    margin-bottom: 65px;
 }
 
 .image-field input {
-    outline: none;
-    width: 100%;
+    width: 233px;
 }
 
-/* .hidden-tags p, .hidden-tags input{
+.custom-file-input {
+    color: transparent;
+    outline: none;
+}
+.custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
-} */
+}
+.custom-file-input::before {
+    content: 'ატვირთე';
+    width: 233px;
+    color: white;
+    display: inline-block;
+    background: #62A1EB;
+    padding: 18px 0px 18px 0px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.custom-file-input:hover::before {
+    background-color: #317AD0;
+    cursor: pointer;
+}
+
+.custom-file-input:active::before {
+    background-color: #1A5DAB;
+}
+
+.bottom-image-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    display: none;
+}
+
+.bottom-image-input input {
+    width: 233px;
+}
+
+.bottom-image-text{
+    display: flex;
+    gap: 18px;
+}
+
+.bottom-image-text div{
+    display: flex;
+    gap: 18px;
+}
+
+.bottom-image-text p:last-child{
+    color: #5F5F5F;
+}
 
 .radios{
     display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+.radios label {
+    margin: 0;
+}
+
+.radios div {
+    gap: 18px;
+}
+
+.radios > div {
+    gap: 50px;
+    margin-top: 15px;
 }
 
 .radios div{
@@ -148,12 +227,17 @@ select{
     align-items: center;
 }
 
-.radios input{
+.radios input, .radios-bottom input{
     outline: none;
 }
 
+.radios-bottom{
+    display: flex;
+    width: 50%;
+}
 
-button{
+
+/* button{
     margin: 20px;
     padding: 8px 20px;
     width: 100px;
@@ -169,11 +253,48 @@ button{
     top: 50%;
     left: 10%;
 }
-/* button:nth-of-type(1){
+button:nth-of-type(1){
     display: none;
 } */
 
+button:nth-of-type(1){
+    visibility: hidden;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button:first-child{
+    background-color: transparent;
+    color: #62A1EB;
+}
+
+button {
+    padding: 16px 60px;
+    border-radius: 8px;
+    background-color: #62A1EB;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    background-color: #317AD0;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #1A5DAB;
+}
+
 
 .error-text{
-    outline: 2px solid #E52F2F;
+    outline: 2px solid #E52F2F !important;
+}
+
+.error-text + span{
+    color: #E52F2F;
 }
