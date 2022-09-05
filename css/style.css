@@ -6,25 +6,25 @@
 
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeue-Light-08.ttf') format("truetype");
+    src: url('../fonts/HelveticaNeue-Light-08.ttf') format("truetype");
     font-weight: 300;
 }
 
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeue-01.ttf') format("truetype");
+    src: url('../fonts/HelveticaNeue-01.ttf') format("truetype");
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeue-Medium-11.ttf') format("truetype");
+    src: url('../fonts/HelveticaNeue-Medium-11.ttf') format("truetype");
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url('fonts/HelveticaNeue-Bold-02.ttf') format("truetype");
+    src: url('../fonts/HelveticaNeue-Bold-02.ttf') format("truetype");
     font-weight: 700;
 }
 
@@ -269,6 +269,7 @@ button:nth-of-type(1){
 .buttons button:first-child{
     background-color: transparent;
     color: #62A1EB;
+    padding: 16px 0px;
 }
 
 button {
@@ -297,4 +298,28 @@ button:active {
 
 .error-text + span{
     color: #E52F2F;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.submit-container {
+    position: absolute;
+    width: 847px;
+    height: 537px;
+    background: #FFFFFF;
+    border-radius: 8px;
 }

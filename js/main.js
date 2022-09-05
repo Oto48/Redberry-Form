@@ -1,7 +1,18 @@
 form = document.querySelector('form');
 div = document.getElementsByClassName('form')
 button = document.getElementsByTagName('button');
-curPage = 0;
+curPage = getSavedValue("curPage") ? +getSavedValue("curPage") : 0;
+
+displayPage(curPage);
+form.onsubmit = ()=>{return false;}
+
+if(curPage === 1) {
+    button[0].style.visibility = "visible";
+    button[1].textContent = 'დამახსოვრება';
+}
+if(curPage === 1) {
+    button[1].textContent = 'შემდეგი';
+}
 
 let name = document.getElementById("name");
 let surname = document.getElementById("surname");
@@ -23,7 +34,6 @@ let purchase_date = document.getElementById("purchase_date");
 let laptop_price = document.getElementById("laptop_price");
 let new_laptop = document.getElementById("new");
 let used_laptop = document.getElementById("used");
-
 
 name.value = getSavedValue("name");
 surname.value = getSavedValue("surname");
@@ -109,7 +119,7 @@ fetch('https://pcfy.redberryinternship.ge/api/cpus')
   .then((response) => {
     response.data.forEach(item => {
         let opt = document.createElement('option');
-        opt.value = item.id;
+        opt.value = item.name;
         opt.innerHTML = item.name;
         laptop_cpu.appendChild(opt);
     });
@@ -168,26 +178,6 @@ function getSavedValue(v){
     return localStorage.getItem(v);
 }
 
-
-form.onsubmit = ()=>{return false;}
-
-
-button[1].onclick = ()=>{
-    validate();
-}
-
-button[0].onclick = ()=>{
-    if (curPage > 0) {
-        curPage--;
-    }
-    if (curPage < 1) {
-        button[0].style.visibility = 'hidden';
-    }
-    if (curPage<div.length-1) {button[1].textContent = 'შემდეგი';}
-    displayPage(curPage);
-}
-
-displayPage(curPage);
 function displayPage(page){
     for(let i of div){
         i.classList.remove('active');
@@ -195,6 +185,13 @@ function displayPage(page){
     div[page].classList.add('active');
 }
 
+function goBack() {
+    curPage -= 1;
+    localStorage.setItem("curPage", curPage)
+    displayPage(curPage);
+    button[0].style.visibility = 'hidden';
+    button[1].textContent = 'შემდეგი';
+}
 
 function validate(){
 
@@ -208,66 +205,85 @@ function validate(){
         let resultEmail = emailRegex.test(email.value);
         let resultPhone = phoneRegex.test(phone.value);
 
-        if (resultName && resultSurname && resultEmail && resultPhone){
+        if (resultName && resultSurname && team.value && position.value && resultEmail && resultPhone){
             curPage++;
+            localStorage.setItem("curPage", curPage);
             button[0].style.visibility = "visible";
             if (curPage>div.length-2) {button[1].textContent = 'დამახსოვრება';}
-            if (curPage >= div.length) {
-                form.onsubmit = ()=>{return true;}
-            }
             displayPage(curPage);
+        } else {
+            checkValue(name, resultName);
+            checkValue(surname, resultSurname);
+            checkValue(team, team.value);
+            checkValue(position, position.value);
+            checkValue(email, resultEmail);
+            checkValue(phone, resultPhone);
         }
-        checkValue(name, resultName);
-        checkValue(surname, resultSurname);
-        checkValue(team, team.value);
-        checkValue(position, position.value);
-        checkValue(email, resultEmail);
-        checkValue(phone, resultPhone);
+    } else if (curPage === 1) {
+        let laptopNameRegex = /^[a-zA-Z0-9!@#$%^&*()_+= -]{1,}$/;
+        let numberRegex = /^[0-9]{1,}$/;
+        let laptopNameResult = laptopNameRegex.test(laptop_name.value);
+        let cpuCoresResult = numberRegex.test(laptop_cpu_cores.value);
+        let cpuThreadsResult = numberRegex.test(laptop_cpu_threads.value);
+        let laptopRamResult= numberRegex.test(laptop_ram.value);
+        let laptopPriceResult = numberRegex.test(laptop_price.value);
+        let hard_drive_type = getSavedValue("hard_drive_type");
+        let laptop_state = getSavedValue("laptop_state");
+
+            if (image.files[0] && laptopNameResult && laptop_brand.value && 
+                laptop_cpu.value && cpuCoresResult && cpuThreadsResult && laptopRamResult &&
+                hard_drive_type && purchase_date.value && laptopPriceResult && laptop_state){
+                formData.append('name', getSavedValue("name"));
+                formData.append('surname', getSavedValue("surname"));
+                formData.append('team_id', getSavedValue("team"));
+                formData.append('position_id', getSavedValue("laptop_ram"));
+                formData.append('phone_number', getSavedValue("phone"));
+                formData.append('email', getSavedValue("email"));
+                formData.append('token', "68be5170a5016b05c1583e9820a7dde1");
+                formData.append('laptop_name', getSavedValue("laptop_name"));
+                formData.append('laptop_brand_id', getSavedValue("laptop_brand"));
+                formData.append('laptop_cpu', getSavedValue("laptop_cpu"));
+                formData.append('laptop_cpu_cores', getSavedValue("laptop_cpu_cores"));
+                formData.append('laptop_cpu_threads', getSavedValue("laptop_cpu_threads"));
+                formData.append('laptop_ram', getSavedValue("laptop_ram"));
+                formData.append('laptop_hard_drive_type', getSavedValue("hard_drive_type"));
+                formData.append('laptop_state', getSavedValue("laptop_state"));
+                formData.append('laptop_purchase_date', getSavedValue("purchase_date"));
+                formData.append('laptop_price', getSavedValue("laptop_price"));
+
+                fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
+                    method: "POST",
+                    body: formData
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                checkValue(laptop_name, laptopNameResult);
+                checkValue(laptop_cpu, laptop_cpu.value);
+                checkValue(laptop_brand, laptop_brand.value);
+                checkValue(laptop_cpu_cores, cpuCoresResult);
+                checkValue(laptop_cpu_threads, cpuThreadsResult);
+                checkValue(laptop_ram, laptopRamResult);
+                checkValue(purchase_date, purchase_date.value);
+                checkValue(laptop_price, laptopPriceResult);
+                checkValue(image, image.files[0]);
+            }
     }
-
-    if(curPage === 1) {
-    }
-}
-
-if(curPage === 1) {
-    button[0].style.visibility = "visible";
-    button[1].textContent = 'დამახსოვრება';
-    button[1].addEventListener("click", function(){
-        formData.append('name', "გელა")
-        formData.append('surname', "გელაშვილი")
-        formData.append('team_id', 1)
-        formData.append('position_id', 1)
-        formData.append('phone_number', "+995555555555")
-        formData.append('email', "gela.gelashvili@redberry.ge")
-        formData.append('token', "68be5170a5016b05c1583e9820a7dde1")
-        formData.append('laptop_name', "HP")
-        formData.append('laptop_brand_id', 1)
-        formData.append('laptop_cpu', "Intel Core i3")
-        formData.append('laptop_cpu_cores', 64)
-        formData.append('laptop_cpu_threads', 128)
-        formData.append('laptop_ram', 34)
-        formData.append('laptop_hard_drive_type', "HDD")
-        formData.append('laptop_state', "new")
-        formData.append('laptop_purchase_date', "10-10-2003")
-        formData.append('laptop_price', "1600")
-
-        fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
-            method: "POST",
-            body: formData
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-    displayPage(curPage);
 }
 
 
 function checkValue(input, validation){
-    !validation ? input.classList.add("error-text") : input.classList.remove("error-text");
+    if (input !== image) {
+        !validation ? input.classList.add("error-text") : input.classList.remove("error-text");
+    }else {
+        let imageField = document.querySelector(".image-field");
+        imageField.style.borderColor = "#E52F2F";  
+        imageField.style.backgroundColor = "#FFF1F1";
+    }
 }
 
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Document</title>
 </head>
@@ -76,7 +76,7 @@
                     <div class="field">
                         <label>ლეპტოპის სახელი</label>
                         <input type="text" placeholder="HP" id="laptop_name" onkeyup="saveValue(this)">
-                        <span></span>
+                        <span>ლათინური ასოები, ციფრები, !@#$%^&*()_+=</span>
                     </div>
                     <div class="field">
                         <label style="visibility: hidden;">ბრენდი</label>
@@ -95,19 +95,19 @@
                     <div class="field">
                         <label>CPU-ს ბირთვი</label>
                         <input type="text" placeholder="გვარი" id="laptop_cpu_cores" onkeyup="saveValue(this)">
-                        <span></span>
+                        <span>მხოლოდ ციფრები</span>
                     </div>
                     <div class="field">
                         <label>CPU-ს ნაკადი</label>
                         <input type="text" placeholder="გვარი" id="laptop_cpu_threads" onkeyup="saveValue(this)">
-                        <span></span>
+                        <span>მხოლოდ ციფრები</span>
                     </div>
                 </div>
                 <div class="input-container">
                     <div class="field">
                         <label>ლეპტოპის RAM (GB)</label>
                         <input type="text" placeholder="HP" id="laptop_ram" onkeyup="saveValue(this)">
-                        <span></span>
+                        <span>მხოლოდ ციფრები</span>
                     </div>
                     <div class="radios">
                         <label>მეხსიერების ტიპი</label>
@@ -132,7 +132,7 @@
                     <div class="field">
                         <label>ლეპტოპის ფასი</label>
                         <input type="text" placeholder="0000" id="laptop_price" onkeyup="saveValue(this)">
-                        <span></span>
+                        <span>მხოლოდ ციფრები</span>
                     </div>
                 </div>
                 <div class="input-container">
@@ -152,11 +152,11 @@
                 </div>
             </div>
             <div class="buttons">
-                <button>უკან</button>
-                <button>შემდეგი</button>
+                <button onclick="goBack()">უკან</button>
+                <button onclick="validate()">შემდეგი</button>
             </div>
         </form>
     </section>
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
