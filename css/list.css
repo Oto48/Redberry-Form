@@ -4,12 +4,21 @@ body {
     font-family: 'HelveticaNeue';
 }
 
+.title{
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 21px;
+    margin: 84px 0 76px 0;
+    text-align: center;
+}
+
 .list {
-    padding: 0 371px;
+    width: 1178px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 55px;
     row-gap: 52px;
+    margin: auto;
 }
 
 .laptop {
@@ -51,4 +60,11 @@ img {
     width: 266px;
     height: 178px;
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .list {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
 }

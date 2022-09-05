@@ -4,6 +4,7 @@ console.log(list)
 fetch('https://pcfy.redberryinternship.ge/api/laptops?token=68be5170a5016b05c1583e9820a7dde1')
   .then((response) => response.json())
   .then((response) => {
+    console.log(response)
     response.data.forEach(item => {
       list.innerHTML += `
       <div class="laptop">
@@ -13,7 +14,7 @@ fetch('https://pcfy.redberryinternship.ge/api/laptops?token=68be5170a5016b05c158
               <p>${item.user.name} ${item.user.surname}</p>
               <p>${item.laptop.name}</p>
           </div>
-          <a href="">link</a>
+          <a href="laptop.html?id=${item.laptop.id}">მეტის ნახვა</a>
         </div>
       </div>`
     });
