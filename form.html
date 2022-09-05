@@ -14,11 +14,11 @@
         <div class="page-indicator">
             <div>
                 <p>თანამშრომლების ინფო</p>
-                <div class="line"></div>
+                <div class="line" id="first"></div>
             </div>
             <div>
                 <p>ლეპტოპების მახასიათებლები</p>
-                <div class="line"></div>
+                <div class="line" id="second"></div>
             </div>
         </div>
         <form action="" id="form">
@@ -58,8 +58,8 @@
             </div>
             <div class="form">
                 <div class="image-field">
-                    <img src="images/Vector.svg" alt="">
-                    <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
+                    <img src="images/Vector.svg" alt="" style="visibility: hidden;" id="validation_image">
+                    <p id="file_text">ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
                     <input class="custom-file-input" type="file" id="image" name="image" accept="image/png, image/jpg, image/jpeg" onchange="addImage(this)">
                 </div>
                 <div class="bottom-image-input">
@@ -85,6 +85,7 @@
                         </select>
                     </div>
                 </div>
+                <div class="hr"></div>
                 <div class="second-input-container">
                     <div class="field">
                         <label style="visibility: hidden;">CPU</label>
@@ -123,6 +124,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="hr"></div>
                 <div class="input-container">
                     <div class="field">
                         <label>შეძენის რიცხვი (არჩევითი)</label>

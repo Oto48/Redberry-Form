@@ -80,6 +80,7 @@ input:focus:not([type=file]):not([type=radio]){
 .input-container{
     display: flex;
     gap: 80px;
+    margin-top: 50px;
 }
 
 .second-input-container{
@@ -134,7 +135,7 @@ select{
     visibility: hidden;
 }
 .custom-file-input::before {
-    content: 'ატვირთე';
+    content: 'თავიდან ატვირთე';
     width: 233px;
     color: white;
     display: inline-block;
@@ -255,4 +256,9 @@ button:active {
 
 .error-text + span{
     color: #E52F2F;
+}
+
+.hr {
+    border: 1px solid #C7C7C7;
+    margin-bottom: 50px;
 }

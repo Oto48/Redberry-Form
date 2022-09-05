@@ -1,9 +1,10 @@
 const url = new URL(window.location.href);
-let search_params = url.searchParams; 
+const search_params = url.searchParams; 
 const id = search_params.get('id');
+let token = "3281de4ebe5baa3ad2be0d33eeb8a770";
 
 
-fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=68be5170a5016b05c1583e9820a7dde1`)
+fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
   .then((response) => response.json())
   .then((response) => {
     const data = response.data;

@@ -1,14 +1,23 @@
 form = document.querySelector('form');
-div = document.getElementsByClassName('form')
+div = document.getElementsByClassName('form');
 button = document.getElementsByTagName('button');
-curPage = getSavedValue("curPage") ? +getSavedValue("curPage") : 0;
+curPage = curPage = getSavedValue("curPage") ? +getSavedValue("curPage") : 0;
+let first = document.getElementById("first");
+let second = document.getElementById("second");
 
 displayPage(curPage);
 form.onsubmit = ()=>{return false;}
 
+if (curPage === 0){
+    second.style.borderColor = "transparent";
+    first.style.borderColor = "#000000";
+}
+
 if(curPage === 1) {
+    first.style.borderColor = "transparent";
+    second.style.borderColor = "#000000";
     button[0].style.visibility = "visible";
-    button[1].textContent = 'დამახსოვრება';
+    button[1].textContent = 'დამახსოვრება'; 
 }
 if(curPage === 1) {
     button[1].textContent = 'შემდეგი';
@@ -191,6 +200,8 @@ function goBack() {
     displayPage(curPage);
     button[0].style.visibility = 'hidden';
     button[1].textContent = 'შემდეგი';
+    second.style.borderColor = "transparent";
+    first.style.borderColor = "#000000";
 }
 
 function validate(){
@@ -210,6 +221,8 @@ function validate(){
             localStorage.setItem("curPage", curPage);
             button[0].style.visibility = "visible";
             if (curPage>div.length-2) {button[1].textContent = 'დამახსოვრება';}
+            first.style.borderColor = "transparent";
+            second.style.borderColor = "#000000";
             displayPage(curPage);
         } else {
             checkValue(name, resultName);
@@ -232,14 +245,15 @@ function validate(){
 
             if (image.files[0] && laptopNameResult && laptop_brand.value && 
                 laptop_cpu.value && cpuCoresResult && cpuThreadsResult && laptopRamResult &&
-                hard_drive_type && purchase_date.value && laptopPriceResult && laptop_state){
+                hard_drive_type && laptopPriceResult && laptop_state){
                 formData.append('name', getSavedValue("name"));
                 formData.append('surname', getSavedValue("surname"));
                 formData.append('team_id', getSavedValue("team"));
-                formData.append('position_id', getSavedValue("laptop_ram"));
+                const position = JSON.parse(getSavedValue("position"));
+                formData.append('position_id', position.value);
                 formData.append('phone_number', getSavedValue("phone"));
                 formData.append('email', getSavedValue("email"));
-                formData.append('token', "68be5170a5016b05c1583e9820a7dde1");
+                formData.append('token', "3281de4ebe5baa3ad2be0d33eeb8a770");
                 formData.append('laptop_name', getSavedValue("laptop_name"));
                 formData.append('laptop_brand_id', getSavedValue("laptop_brand"));
                 formData.append('laptop_cpu', getSavedValue("laptop_cpu"));
@@ -257,6 +271,9 @@ function validate(){
                 })
                 .then(function (response) {
                     console.log(response);
+                    localStorage.clear();
+                    second.style.borderColor = "transparent";
+                    window.location.replace("submit-page.html");
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -268,7 +285,6 @@ function validate(){
                 checkValue(laptop_cpu_cores, cpuCoresResult);
                 checkValue(laptop_cpu_threads, cpuThreadsResult);
                 checkValue(laptop_ram, laptopRamResult);
-                checkValue(purchase_date, purchase_date.value);
                 checkValue(laptop_price, laptopPriceResult);
                 checkValue(image, image.files[0]);
             }
@@ -280,177 +296,10 @@ function checkValue(input, validation){
     if (input !== image) {
         !validation ? input.classList.add("error-text") : input.classList.remove("error-text");
     }else {
-        let imageField = document.querySelector(".image-field");
+        const imageField = document.querySelector(".image-field");
         imageField.style.borderColor = "#E52F2F";  
         imageField.style.backgroundColor = "#FFF1F1";
+        document.getElementById("validation_image").style.visibility = "visible";
+        document.getElementById("file_text").style.color = "#E52F2F";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// fetch('https://pcfy.redberryinternship.ge/api/laptops?token=68be5170a5016b05c1583e9820a7dde1')
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((error) => console.log(error));
-
-
-// let data = {
-//     name: "გელა",
-//     surname: "გელაშვილი",
-//     team_id: 1,
-//     position_id: 1,
-//     phone_number: "+995555555555",
-//     email: "gela.gelashvili@redberry.ge",
-//     token:  "68be5170a5016b05c1583e9820a7dde1",
-//     laptop_name: "HP",
-//     laptop_image: getSavedValue("image"),
-//     laptop_brand_id: 1,
-//     laptop_cpu: "Intel Core i3",
-//     laptop_cpu_cores: 64,
-//     laptop_cpu_threads: 128,
-//     laptop_ram: 34,
-//     laptop_hard_drive_type: "HDD",
-//     laptop_state: "new",
-//     laptop_purchase_date: "10-10-2003",
-//     laptop_price: 1600
-// }
-
-// console.log(data);
-// console.log(JSON.stringify(data))
-
-// const formData = new FormData();
-// formData.append('name', "გელა")
-// formData.append('surname', "გელაშვილი")
-// formData.append('team_id', 1)
-// formData.append('position_id', 1)
-
-// formData.append('phone_number', "+995555555555")
-// formData.append('email', "gela.gelashvili@redberry.ge")
-// formData.append('token', "68be5170a5016b05c1583e9820a7dde1")
-// formData.append('laptop_name', "HP")
-// formData.append('laptop_image', getSavedValue("image"))
-// formData.append('laptop_brand_id', 1)
-// formData.append('laptop_cpu', "Intel Core i3")
-// formData.append('laptop_cpu_cores', 64)
-// formData.append('laptop_cpu_threads', 128)
-// formData.append('laptop_ram', 34)
-// formData.append('laptop_hard_drive_type', "HDD")
-// formData.append('laptop_state', "new")
-// formData.append('laptop_purchase_date', "10-10-2003")
-// formData.append('laptop_price', "1600")
-
-
-
-// for (const [key, value] of formData) {
-//     console.log(`${key}: ${value}\n`);
-// }
-
-// xhr.open("POST", 'https://pcfy.redberryinternship.ge/api/laptop/create', true);
-// xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-// xhr.send(someStuff);
-
-// var xhr = new XMLHttpRequest();
-// xhr.open("POST", "https://pcfy.redberryinternship.ge/api/laptop/create", true);
-// xhr.setRequestHeader('Content-Type', 'application/json');   //multipart/form-data
-// xhr.send(JSON.stringify({
-//     name: "გელა",
-//     surname: "გელაშვილი",
-//     team_id: 1,
-//     position_id: 1,
-//     phone_number: "+995555555555",
-//     email: "gela.gelashvili@redberry.ge",
-//     token:  "68be5170a5016b05c1583e9820a7dde1",
-//     laptop_name: "HP",
-//     laptop_image: formData,
-//     laptop_brand_id: 1,
-//     laptop_cpu: "Intel Core i3",
-//     laptop_cpu_cores: 64,
-//     laptop_cpu_threads: 128,
-//     laptop_ram: 34,
-//     laptop_hard_drive_type: "HDD",
-//     laptop_state: "new",
-//     laptop_purchase_date: "10-10-2003",
-//     laptop_price: 1600
-// }));
-// xhr.onload = function() {
-//   console.log("HELLO")
-//   console.log(this.responseText);
-//   var data = JSON.parse(this.responseText);
-//   console.log(data);
-// }
-
-// axios.post('https://pcfy.redberryinternship.ge/api/laptop/create', formData)
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-
-// const requestOptions = {
-//     method: 'POST',
-//     body: data
-// }
-
-// var xhr = new XMLHttpRequest();
-// xhr.open("POST", "https://pcfy.redberryinternship.ge/api/laptop/create", true);
-// xhr.setRequestHeader('Content-Type', 'application/json');   //multipart/form-data
-// xhr.send(JSON.stringify({
-//     name: "გელა",
-//     surname: "გელაშვილი",
-//     team_id: 1,
-//     position_id: 1,
-//     phone_number: "+995555555555",
-//     email: "gela.gelashvili@redberry.ge",
-//     token:  "68be5170a5016b05c1583e9820a7dde1",
-//     laptop_name: "HP",
-//     laptop_image: getSavedValue("image"),
-//     laptop_brand_id: 1,
-//     laptop_cpu: "Intel Core i3",
-//     laptop_cpu_cores: 64,
-//     laptop_cpu_threads: 128,
-//     laptop_ram: 34,
-//     laptop_hard_drive_type: "HDD",
-//     laptop_state: "new",
-//     laptop_purchase_date: "10-10-2003",
-//     laptop_price: 1600
-// }));
-// xhr.onload = function() {
-//   console.log("HELLO")
-//   console.log(this.responseText);
-//   var data = JSON.parse(this.responseText);
-//   console.log(data);
-// }
-
-// fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application.json',
-//       'Content-Type': 'multipart/form-data'
-//     },
-//     body: JSON.stringify(data)
-// })
-// .then(response => {
-//     if(response.status == 200) {
-//         console.log("works!");
-//     } 
-//     else throw new Error();
-// })
-// .catch(err => {
-//     console.log(err)
-// })
