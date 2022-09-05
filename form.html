@@ -95,7 +95,7 @@
                 <div class="input-container">
                     <div class="field">
                         <label>ლეპტოპის RAM (GB)</label>
-                        <input type="text" placeholder="HP" id="laptop_name" onkeyup="saveValue(this)">
+                        <input type="text" placeholder="HP" id="laptop_ram" onkeyup="saveValue(this)">
                         <span></span>
                     </div>
                     <div class="radios">
@@ -109,16 +109,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-container">
+                <div class="input-container" id="image-container">
                     <div class="field">
                         <label>შეძენის რიცხვი (არჩევითი)</label>
-                        <input type="date" id="purchase_date" onkeyup="saveValue(this)">
+                        <input type="date" id="purchase_date" onchange="saveValue(this)">
                         <span></span>
                     </div>
                     <div class="field">
                         <label>ლეპტოპის ფასი</label>
                         <input type="text" placeholder="0000" id="laptop_price" onkeyup="saveValue(this)">
                         <span></span>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="radios">
+                        <div>
+                            <input type="radio" id="new" name="laptop_state" value="new" onchange="saveRadioValue(this)">
+                            <label for="new">ახალი</abel>
+                        </div>
+                        <div>
+                            <input type="radio" id="used" name="laptop_state" value="used" onchange="saveRadioValue(this)">
+                            <label for="used">მეორადი</label>
+                        </div>
                     </div>
                 </div>
             </div>

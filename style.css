@@ -135,6 +135,10 @@ select{
     width: 100%;
 }
 
+/* .hidden-tags p, .hidden-tags input{
+    visibility: hidden;
+} */
+
 .radios{
     display: flex;
 }
@@ -165,9 +169,9 @@ button{
     top: 50%;
     left: 10%;
 }
-button:nth-of-type(1){
+/* button:nth-of-type(1){
     display: none;
-}
+} */
 
 
 .error-text{
