@@ -1,0 +1,57 @@
+@import "fonts.css";
+
+body {
+    background: #FFFFFF;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 85px;
+    margin-bottom: 123px;
+}
+
+.images img:first-child {
+    margin-top: 79px;
+    width: 112px;
+}
+
+.images img:last-child {
+    width: 780px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+
+button {
+    padding: 16px 60px;
+    border-radius: 8px;
+    background-color: #62A1EB;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    color: white;
+    width: 387px;
+}
+
+button:hover {
+    background-color: #317AD0;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #1A5DAB;
+}
+
+@media only screen and (max-width: 600px) {
+    .images img:last-child {
+        content:url("../images/Group.png");
+        width: 270px;
+    }
+}
